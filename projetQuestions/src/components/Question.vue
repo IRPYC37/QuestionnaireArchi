@@ -1,10 +1,14 @@
 <template>
   <div>
-    <!-- Affichage du texte de la question -->
+    <!-- Affichage de la question et des options -->
     <div>{{ question.text }}</div>
-    <!-- Bouton pour modifier la question -->
+    <div v-for="(option, index) in question.options" :key="index">
+      <input type="checkbox" v-model="option.isCorrect" />
+      <span>{{ option.text }}</span>
+    </div>
+    
+    <!-- Boutons de suppression et de modification -->
     <button @click="editQuestion">Modifier</button>
-    <!-- Bouton pour supprimer la question -->
     <button @click="deleteQuestion">Supprimer</button>
   </div>
 </template>
@@ -12,17 +16,12 @@
 <script>
 export default {
   props: {
-    question: Object // Propriété pour passer la question à ce composant
+    question: Object
   },
   methods: {
-    // Méthode pour éditer le titre de la question
     editQuestion() {
-      const newTitle = prompt('Entrez le nouveau titre de la question :', this.question.text);
-      if (newTitle !== null && newTitle.trim() !== '') {
-        this.$emit('updateQuestion', this.question.id, newTitle);
-      }
+      this.$emit('editQuestion', this.question.id);
     },
-    // Méthode pour émettre un événement indiquant que la question doit être supprimée
     deleteQuestion() {
       this.$emit('deleteQuestion', this.question.id);
     }
