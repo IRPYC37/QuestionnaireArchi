@@ -17,6 +17,3 @@ export default {
 };
 </script>
 
-<style>
-/* Styles pour votre application */
-</style>

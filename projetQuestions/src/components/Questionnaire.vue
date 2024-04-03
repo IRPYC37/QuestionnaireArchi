@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <input type="text" v-model="newQuestionTitle" placeholder="Entrez le titre de la question" />
-    <input type="text" v-model="newAnswer" placeholder="Entrez une réponse prédéfinie" />
+  <div id="champQuestion">
+    <input class="champ" type="text" v-model="newQuestionTitle" placeholder="Entrez le titre de la question" />
+    <input class="champ" type="text" v-model="newAnswer" placeholder="Entrez une réponse prédéfinie" />
     <button @click="addAnswer">Ajouter une réponse</button>
     <div v-for="(answer, index) in answers" :key="index">
       <input type="checkbox" v-model="answer.isCorrect" />
